@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSY 452 OOP Study App - Dark Mode</title>
+    <style>
+        :root {
+            --bg-main: #121212;
+            --bg-panel: #1e1e1e;
+            --sidebar: #181818;
+            --border: #333333;
+            --primary: #93c5fd;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            
+            --exam-bg: #292518;
+            --exam-border: #d97706;
+            --exam-text: #fbbf24;
+            
+            --correct-bg: #064e3b;
+            --correct-border: #10b981;
+            --correct-text: #a7f3d0;
+            
+            --wrong-bg: #7f1d1d;
+            --wrong-border: #ef4444;
+            --wrong-text: #fecaca;
+        }
+
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; display: flex; height: 100vh; background: var(--bg-main); color: var(--text-main); }
+        
+        aside { width: 280px; background: var(--sidebar); color: var(--text-main); padding: 20px; display: flex; flex-direction: column; border-right: 1px solid var(--border); flex-shrink: 0;}
+        aside h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; color: var(--text-main); }
+        
+        .module-list { list-style: none; padding: 0; margin: 0; flex-grow: 1; overflow-y: auto; }
+        .module-list li { padding: 12px; margin-bottom: 8px; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: 0.2s; font-weight: 500; color: var(--text-muted); }
+        .module-list li:hover { border-color: var(--primary); color: var(--text-main); }
+        .module-list li.active { background: var(--accent); color: white; border-color: var(--accent); }
+        
+        main { flex: 1; display: flex; flex-direction: column; padding: 40px; overflow-y: auto; scroll-behavior: smooth; }
+        
+        .top-action-bar { margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--border); padding-bottom: 20px; }
+        #module-title { margin: 0; font-size: 2rem; color: var(--text-main); }
+        
+        #top-new-attempt-btn { background: #059669; font-size: 1.1rem; padding: 12px 24px; }
+        #top-new-attempt-btn:hover { background: #047857; }
+        
+        #notes-container { line-height: 1.45; font-size: 1.05rem; color: #f1f5f9; padding-bottom: 20px;}
+        #notes-container h3 { border-bottom: 2px solid var(--border); padding-bottom: 12px; color: var(--primary); margin-top: 0; margin-bottom: 20px; font-size: 1.6rem; letter-spacing: 0.5px; }
+        #notes-container h4 { color: var(--accent); margin-top: 35px; margin-bottom: 20px; font-size: 1.3rem; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        #notes-container p { margin-bottom: 1.2rem; }
+        
+        #notes-container ul, #notes-container ol { margin-bottom: 1.5rem; padding-left: 2rem; }
+        #notes-container li { margin-bottom: 1rem; }
+        #notes-container li > ul { margin-top: 1rem; margin-bottom: 0; padding-left: 2.8rem; list-style-type: circle; }
+        #notes-container li > ul > li { margin-bottom: 0.8rem; }
+        
+        #notes-container strong { color: #ffffff; font-size: 1.05rem; letter-spacing: 0.2px; }
+        #notes-container em { font-style: italic; color: #93c5fd; }
+        
+        .highlight-tag { 
+            color: #dbeafe; 
+            font-style: normal; 
+            background: rgba(59, 130, 246, 0.15); 
+            padding: 3px 10px; 
+            border-radius: 6px; 
+            font-weight: 500; 
+            margin: 0; 
+            display: inline-block; 
+            border: 1px solid rgba(59, 130, 246, 0.3); 
+            vertical-align: baseline;
+        }
+        
+        .standard-notes { background: #161616; border: 1px solid var(--border); padding: 40px; margin: 30px 0; border-radius: 10px; }
+        .exam-focus { background-color: var(--exam-bg); border: 1px solid rgba(217, 119, 6, 0.3); border-left: 8px solid var(--exam-border); padding: 40px; margin: 35px 0; border-radius: 0 10px 10px 0; }
+        .exam-focus-label { display: block; font-weight: bold; color: var(--exam-text); margin-bottom: 20px; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        
+        hr.section-divider { border: 0; border-top: 2px solid var(--border); margin: 20px 0; display: none; }
+        
+        /* Quiz Container completely hidden by default */
+        .quiz-container { max-width: 800px; margin: 0 auto; background: var(--bg-panel); padding: 40px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 8px 16px rgba(0,0,0,0.5); margin-bottom: 60px; display: none; }
+        .quiz-container.active { display: block; }
+        
+        .quiz-header-title { color: #10b981; margin-top: 0; font-size: 1.8rem; border-bottom: 2px solid var(--border); padding-bottom: 15px; margin-bottom: 30px;}
+        
+        .options { display: flex; flex-direction: column; gap: 16px; margin-top: 30px; }
+        .option-btn { padding: 18px 24px; border: 2px solid var(--border); background: var(--bg-main); color: var(--text-main); border-radius: 10px; cursor: pointer; text-align: left; transition: 0.2s; font-size: 1.1rem; line-height: 1.45; }
+        .option-btn:hover:not(:disabled) { background: #262626; transform: translateY(-2px); }
+        .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); font-weight: bold; }
+        .option-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong-border); color: var(--wrong-text); }
+        
+        .quiz-controls { display: flex; justify-content: space-between; margin-top: 35px; align-items: center; padding-top: 25px; border-top: 1px solid var(--border); }
+        button.action-btn { background: var(--accent); color: white; border: none; padding: 14px 28px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1.05rem; transition: background 0.2s; }
+        button.action-btn:hover:not(:disabled) { background: var(--accent-hover); }
+        button.action-btn:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <h2>PSY 452 Modules</h2>
+        <ul class="module-list" id="sidebar-list"></ul>
+    </aside>
+
+    <main id="main-view">
+        <div class="top-action-bar">
+            <h1 id="module-title">Select a Module</h1>
+            <button class="action-btn" id="top-new-attempt-btn">Start Practice Quiz</button>
+        </div>
+
+        <section id="notes-container"></section>
+        
+        <hr class="section-divider" id="quiz-divider">
+
+        <section id="quiz-section" class="quiz-container">
+            <h2 class="quiz-header-title">Module Practice Quiz</h2>
+            <h3 id="q-counter" style="color: var(--primary); font-size: 1.2rem;"></h3>
+            <p id="q-text" style="font-size: 1.3rem; font-weight: 500; margin-top: 25px; line-height: 1.45;"></p>
+            <div class="options" id="options-container"></div>
+            <div class="quiz-controls">
+                <button class="action-btn" id="prev-btn">Previous</button>
+                <span id="score-display" style="font-size: 1.3rem; font-weight: bold; color: var(--primary);">Score: 0 / 10</span>
+                <button class="action-btn" id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="lecture1.js"></script>
+    <script src="lecture2.js"></script>
+    <script src="lecture3.js"></script>
+    <script src="quizdata.js"></script>
+    
+    <script>
+        class CourseDatabase {
+            constructor() {
+                this.modules = new Map();
+                this.seedData();
+            }
+            seedData() {
+                const notes1 = typeof lecture1Notes !== 'undefined' ? lecture1Notes : [];
+                const quiz1 = typeof lecture1Quiz !== 'undefined' ? lecture1Quiz : [];
+                this.modules.set(1, { id: 1, title: "Lecture 1: Psychology of Prejudice", notes: notes1, quiz: quiz1 });
+                
+                const notes2 = typeof lecture2Notes !== 'undefined' ? lecture2Notes : [];
+                const quiz2 = typeof lecture2Quiz !== 'undefined' ? lecture2Quiz : [];
+                this.modules.set(2, { id: 2, title: "Lecture 2: Intergroup Discrimination", notes: notes2, quiz: quiz2 });
+
+                const notes3 = typeof lecture3Notes !== 'undefined' ? lecture3Notes : [];
+                const quiz3 = typeof lecture3Quiz !== 'undefined' ? lecture3Quiz : [];
+                this.modules.set(3, { id: 3, title: "Lecture 3: Evolutionary Approaches", notes: notes3, quiz: quiz3 });
+            }
+            getModule(id) { return this.modules.get(id); }
+            getAllModules() { return Array.from(this.modules.values()); }
+        }
+
+        class QuizEngine {
+            constructor(uiController) {
+                this.ui = uiController;
+                this.allQuestions = [];
+                this.questions = [];
+                this.currentQ = 0;
+                this.score = 0;
+                this.answered = [];
+                this.moduleId = null;
+            }
+
+            loadPool(moduleId, quizData) {
+                this.moduleId = moduleId;
+                this.allQuestions = quizData;
+            }
+
+            startNewAttempt() {
+                if (!this.allQuestions || this.allQuestions.length === 0) return;
+
+                const usedKey = 'psy452_used_qs_' + this.moduleId;
+                const usedString = sessionStorage.getItem(usedKey);
+                let usedIndices = usedString ? JSON.parse(usedString) : [];
+                
+                let availableIndices = [];
+                for (let i = 0; i < this.allQuestions.length; i++) {
+                    if (usedIndices.indexOf(i) === -1) {
+                        availableIndices.push(i);
+                    }
+                }
+
+                if (availableIndices.length < 10) {
+                    alert("Question pool exhausted! Resetting available questions for this module.");
+                    usedIndices = [];
+                    availableIndices = [];
+                    for (let j = 0; j < this.allQuestions.length; j++) {
+                        availableIndices.push(j);
+                    }
+                }
+
+                for (let k = availableIndices.length - 1; k > 0; k--) {
+                    const l = Math.floor(Math.random() * (k + 1));
+                    const temp = availableIndices[k];
+                    availableIndices[k] = availableIndices[l];
+                    availableIndices[l] = temp;
+                }
+
+                const selectedIndices = availableIndices.slice(0, 10);
+                usedIndices = usedIndices.concat(selectedIndices);
+                sessionStorage.setItem(usedKey, JSON.stringify(usedIndices));
+
+                const self = this;
+                this.questions = selectedIndices.map(function(idx) {
+                    return self.allQuestions[idx];
+                });
+                
+                this.currentQ = 0;
+                this.score = 0;
+                this.answered = new Array(this.questions.length).fill(false);
+                
+                this.render();
+            }
+
+            checkAnswer(selectedIndex) {
+                if (this.answered[this.currentQ]) return;
+                
+                this.answered[this.currentQ] = true;
+                const correctIndex = this.questions[this.currentQ].answer;
+                
+                if (selectedIndex === correctIndex) this.score++;
+                this.ui.updateQuizUI(this, selectedIndex, correctIndex);
+            }
+
+            navigate(direction) {
+                this.currentQ += direction;
+                this.render();
+            }
+
+            render() {
+                if (this.questions.length > 0) {
+                    this.ui.renderQuizState(this);
+                }
+            }
+        }
+
+        class AppController {
+            constructor(db) {
+                this.db = db;
+                this.quizEngine = new QuizEngine(this);
+                this.activeModuleId = null;
+                this.cacheDOM();
+                this.bindEvents();
+                this.initSidebar();
+            }
+
+            cacheDOM() {
+                this.sidebar = document.getElementById('sidebar-list');
+                this.moduleTitle = document.getElementById('module-title');
+                this.notesContainer = document.getElementById('notes-container');
+                this.quizSection = document.getElementById('quiz-section');
+                this.quizDivider = document.getElementById('quiz-divider');
+                
+                this.qCounter = document.getElementById('q-counter');
+                this.qText = document.getElementById('q-text');
+                this.optionsContainer = document.getElementById('options-container');
+                this.scoreDisplay = document.getElementById('score-display');
+                this.prevBtn = document.getElementById('prev-btn');
+                this.nextBtn = document.getElementById('next-btn');
+                this.topNewAttemptBtn = document.getElementById('top-new-attempt-btn');
+            }
+
+            bindEvents() {
+                const self = this;
+                this.prevBtn.addEventListener('click', function() { self.quizEngine.navigate(-1); });
+                this.nextBtn.addEventListener('click', function() { self.quizEngine.navigate(1); });
+                
+                this.topNewAttemptBtn.addEventListener('click', function() {
+                    self.quizSection.classList.add('active');
+                    self.quizDivider.style.display = 'block';
+                    self.quizEngine.startNewAttempt();
+                    self.quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+
+            initSidebar() {
+                const modules = this.db.getAllModules();
+                const self = this;
+                modules.forEach(function(mod) {
+                    const li = document.createElement('li');
+                    li.innerText = mod.title;
+                    li.setAttribute('data-id', mod.id);
+                    li.addEventListener('click', function() {
+                        self.loadModule(mod.id);
+                        document.getElementById('main-view').scrollTop = 0;
+                    });
+                    self.sidebar.appendChild(li);
+                });
+                if (modules.length > 0) {
+                    this.loadModule(modules[0].id);
+                }
+            }
+
+            loadModule(id) {
+                this.activeModuleId = id;
+                const mod = this.db.getModule(id);
+                
+                const listItems = document.querySelectorAll('.module-list li');
+                listItems.forEach(function(li) { li.classList.remove('active'); });
+                
+                const activeLi = document.querySelector('.module-list li[data-id="' + id + '"]');
+                if (activeLi) activeLi.classList.add('active');
+                
+                this.moduleTitle.innerText = mod.title;
+                this.renderNotes(mod.notes);
+                
+                this.quizSection.classList.remove('active');
+                this.quizDivider.style.display = 'none';
+                
+                this.quizEngine.loadPool(mod.id, mod.quiz);
+            }
+
+            renderNotes(notesData) {
+                this.notesContainer.innerHTML = '';
+                const self = this;
+                
+                notesData.forEach(function(note) {
+                    const div = document.createElement('div');
+                    div.className = note.type;
+                    
+                    if (note.type === 'exam-focus') {
+                        const label = document.createElement('span');
+                        label.className = 'exam-focus-label';
+                        label.innerText = '⭐ EXAM FOCUS';
+                        div.appendChild(label);
+                    }
+                    
+                    const contentDiv = document.createElement('div');
+                    contentDiv.innerHTML = note.content;
+                    div.appendChild(contentDiv);
+                    
+                    self.notesContainer.appendChild(div);
+                });
+            }
+
+            renderQuizState(engine) {
+                const qData = engine.questions[engine.currentQ];
+                const currentNum = engine.currentQ + 1;
+                const totalNum = engine.questions.length;
+                
+                this.qCounter.innerText = 'Question ' + currentNum + ' of ' + totalNum;
+                this.qText.innerText = qData.q;
+                this.scoreDisplay.innerText = 'Score: ' + engine.score + ' / ' + totalNum;
+                
+                this.optionsContainer.innerHTML = '';
+                const self = this;
+                
+                qData.options.forEach(function(opt, index) {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.innerText = opt;
+                    if (engine.answered[engine.currentQ]) {
+                        btn.disabled = true;
+                    }
+                    btn.addEventListener('click', function() {
+                        engine.checkAnswer(index);
+                    });
+                    self.optionsContainer.appendChild(btn);
+                });
+
+                this.prevBtn.disabled = engine.currentQ === 0;
+                this.nextBtn.disabled = engine.currentQ === (totalNum - 1);
+            }
+
+            updateQuizUI(engine, selectedIndex, correctIndex) {
+                const buttons = this.optionsContainer.querySelectorAll('.option-btn');
+                buttons.forEach(function(b) {
+                    b.disabled = true;
+                });
+                
+                if (selectedIndex === correctIndex) {
+                    buttons[selectedIndex].classList.add('correct');
+                } else {
+                    buttons[selectedIndex].classList.add('wrong');
+                    buttons[correctIndex].classList.add('correct');
+                }
+                
+                const totalNum = engine.questions.length;
+                this.scoreDisplay.innerText = 'Score: ' + engine.score + ' / ' + totalNum;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const database = new CourseDatabase();
+            const app = new AppController(database);
+        });
+    </script>
+</body>
+</html>
