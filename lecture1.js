@@ -1,4 +1,4 @@
-const lecture1Notes = [
+var lecture1Notes = [
     {
         type: "exam-focus",
         content: `
@@ -37,9 +37,8 @@ const lecture1Notes = [
                 <li><strong>Sociocultural explanations:</strong> Understood as behaviors encouraged and maintained by established social norms (<span class="highlight-tag">highlighted heavily during the Civil Rights Movement</span>).</li>
                 <li><strong>Dominant group influences:</strong> An appreciation for how societal power structures dictate bias.</li>
                 <li><strong>Universal cognitive processes:</strong> Reflects normal human cognitive functions, such as <span class="highlight-tag">categorization</span>.</li>
-                <li><strong>Complex, affective, and motivationally driven:</strong> The modern view recognizing prejudice is dependent upon multiple intersecting factors, including cognition, emotion, and societal influences.</li>
+                <li><strong>Complex, affective, and motivationally driven:</strong> The modern view recognizing prejudice is dependent upon multiple intersecting factors.</li>
             </ol>
-            <p><strong>General Shifts Over Time:</strong> The concept evolved from seeing prejudice as an <span class="highlight-tag">accepted/legitimate</span> response, to an <span class="highlight-tag">unacceptable/atypical</span> trait, to <span class="highlight-tag">psychoanalytical</span> defense mechanisms, to <span class="highlight-tag">sociocultural</span> norms, to <span class="highlight-tag">cognitive</span> factors, and finally to a <strong>multiple-factor dependency</strong>.</p>
         `
     },
     {
@@ -64,8 +63,7 @@ const lecture1Notes = [
         type: "exam-focus",
         content: `
             <h3>Types of Stereotypes</h3>
-            <p><strong>Origins of the word:</strong> The term originally described the industrial process of making metal plates from molds to be used for repeated printings. The word <em>cliché</em> was the onomatopoeia for the sound made during the process of striking a block into molten type-metal. It evolved into a slang term for frequently used phrases, and now means "a phrase or opinion that is overused and betrays a lack of original thought."</p>
-            
+            <p><strong>Origins of the word:</strong> The term originally described the industrial process of making metal plates from molds to be used for repeated printings. The word <em>cliché</em> was the onomatopoeia for the sound made during the process of striking a block into molten type-metal.</p>
             <h4>Cultural vs. Individual Stereotypes</h4>
             <ul>
                 <li>Humans hold stereotypes for a vast range of categories, including ethnicity, countries, age, sex, religions, and college majors.</li>
@@ -76,24 +74,9 @@ const lecture1Notes = [
                         <li><span class="highlight-tag">Africa Example:</span> Albinos have magical powers.</li>
                     </ul>
                 </li>
-                <li><strong>Individual stereotypes:</strong> Beliefs held by a single individual about a group. These may or may not overlap with the broader cultural stereotype.
+                <li><strong>Individual stereotypes:</strong> Beliefs held by a single individual about a group.
                     <ul>
                         <li><span class="highlight-tag">Example of overlap:</span> Believing teachers are naturally compassionate and self-sacrificing.</li>
-                    </ul>
-                </li>
-            </ul>
-
-            <h4>Positive vs. Negative Stereotypes</h4>
-            <ul>
-                <li><strong>Negative stereotypes:</strong> Reflect inherently negative generalizations about a targeted group.</li>
-                <li><strong>Positive stereotypes:</strong> Reflect outwardly positive generalizations.
-                    <ul>
-                        <li><span class="highlight-tag">Examples:</span> Associating Black people with athletics, Asian people with math/academics, or Filipinos as good singers.</li>
-                    </ul>
-                </li>
-                <li><strong>Consequences of Positive Stereotypes:</strong> They remain highly problematic. 
-                    <ul>
-                        <li><span class="highlight-tag">Impacts:</span> Cause psychological distress, depersonalization, foster negative views on help-seeking, and create unrealistic expectations of the self.</li>
                     </ul>
                 </li>
             </ul>
