@@ -1,4 +1,4 @@
-const lecture3Notes = [
+var lecture3Notes = [
     {
         type: "exam-focus",
         content: `
@@ -7,11 +7,10 @@ const lecture3Notes = [
             <ul>
                 <li><strong>Important Caveats:</strong> "Adaptation" does not mean a trait is adaptive in modern environments or that it currently increases survival. "Evolved" does not mean ideal, acceptable, or good. These evolved mechanisms are also not inflexible; they are soft-coded and can be overwritten.</li>
             </ul>
-
             <h4>The Three Guiding Ideas of the Evolutionary Perspective</h4>
             <ol>
                 <li><strong>Different threats and opportunities require different responses:</strong> Traditional views focus on a general "prejudice," but an evolutionary perspective argues that different groups elicit different, specific emotional responses (e.g., fear versus anger).</li>
-                <li><strong>Kernels of truth to prejudices:</strong> Prejudices are not completely irrational or inaccurate. They are often statistical correlations distorted into moral judgments (e.g., indicators of poor health like obesity). <em>(Note: This does not justify prejudicial behavior.)</em></li>
+                <li><strong>Kernels of truth to prejudices:</strong> Prejudices are not completely irrational or inaccurate. They are often statistical correlations distorted into moral judgments (e.g., indicators of poor health like obesity).</li>
                 <li><span class="highlight-tag">Influence of Vulnerability:</span> Prejudices and biases are most likely to be evoked when an individual is feeling vulnerable. Vulnerability activates protective mechanisms (e.g., fight-or-flight).</li>
             </ol>
         `
@@ -24,7 +23,6 @@ const lecture3Notes = [
                 <li><span class="highlight-tag">Importance of Affordances:</span> An "affordance" refers to the potential actions or uses that an environment offers an organism. Affordance-management systems reflect the cognitive and behavioral strategies evolved in response to these affordances to maximize survival.</li>
                 <li>Because the world is complex, multiple affordance-management systems are needed to handle different social opportunities (e.g., available resources) and threats.</li>
             </ul>
-
             <h4>Unique Insights & Intersections</h4>
             <ul>
                 <li><span class="highlight-tag">Intersection of Important Features:</span> The most prominent stereotypes exist at the intersections of important primary categories (e.g., sex/age, not just sex alone).
@@ -56,7 +54,6 @@ const lecture3Notes = [
                 <li>Specific emotions are qualitatively different based upon the negatively perceived group. For example, immigrants often elicit <em>fear</em>, while gay men often elicit <em>disgust</em>.</li>
                 <li><em>Pity:</em> Regulates the human altruistic system. It motivates prosocial behavior toward those temporarily disadvantaged to generate gratitude and subsequent reciprocity.</li>
             </ul>
-
             <h4>Vulnerability Triggers</h4>
             <ul>
                 <li><em>Russell (2018):</em> Women interact differently with men after learning of their sexual orientation (straight vs. gay). Comfort levels with gay men increased, mediated by women's concerns about straight men's sexual intentions.</li>
@@ -75,7 +72,6 @@ const lecture3Notes = [
                 <li>It relies on a general tendency to avoid statistically abnormal physical and behavioral marks (e.g., physical disabilities, the elderly, obesity).</li>
                 <li><em>Survival > Accuracy:</em> The system operates on the principle that the cost of a false positive (avoiding a healthy person) is low, while the cost of a false negative (failing to avoid a diseased person) is high.</li>
             </ul>
-
             <h4>Disease & Prejudice Experiments</h4>
             <ul>
                 <li><em>Duncan & Schaller (2009):</em> Participants primed with pathogen salience showed a massive increase in implicit ageism (associating the elderly with negative concepts). Interestingly, Asian participants showed a naturally stronger association between the elderly and negative concepts due to cultural beliefs emphasizing internal rather than external etiologies of disease.</li>
@@ -93,7 +89,6 @@ const lecture3Notes = [
                 <li><em>Stangor et al. (1992):</em> Used a "Who Said What" memory paradigm where statements were paired with photos of Black/White men/women. Participants made significantly more "within-sex" errors than "between-sex" errors, indicating that sex is deeply encoded as an independent category. Race is less rigidly encoded, leading to more crossing of racial category borders during recall.</li>
                 <li><em>Task Demands:</em> If the task changes (e.g., choosing a media representative), participants shift their categorization. They begin making "within-clothing" errors (formal vs. casual) rather than sex-based errors.</li>
             </ul>
-
             <h4>Pietraszewski et al. (2014) & Alliance Detection</h4>
             <ul>
                 <li>Provided evidence for an evolutionary alliance detection system. When charity coalition information was provided (e.g., Habitat for Humanity vs. Partners in Health), race-based errors dropped significantly.</li>
