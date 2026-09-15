@@ -1,26 +1,23 @@
-const lecture2Notes = [
+var lecture2Notes = [
     {
         type: "exam-focus",
         content: `
             <h3>Ingroup vs. Outgroup & Categorization</h3>
             <p><strong>Definitions:</strong></p>
             <ul>
-                <li><span class="highlight-tag">Ingroup (IG):</span> The group that you identify with (e.g., Generation Z).</li>
-                <li><span class="highlight-tag">Outgroup (OG):</span> The group that you do not identify with (e.g., Boomers).</li>
+                <li><span class="highlight-tag">Ingroup (IG):</span> The group that you identify with.</li>
+                <li><span class="highlight-tag">Outgroup (OG):</span> The group that you do not identify with.</li>
             </ul>
-            
             <h4>Categorization Qualities</h4>
             <p>IG/OG distinctions stem from categorization, which is a valuable cognitive process for three main reasons:</p>
             <ul>
                 <li><span class="highlight-tag">Adaptive:</span> Critical to our survival; helps process emotional expressions, situations/schemas, and threats.</li>
                 <li><span class="highlight-tag">Efficient:</span> Fast, undemanding, and occurs automatically. Under cognitive load, we rely on it more (similar to heuristics).</li>
-                <li><span class="highlight-tag">Useful:</span> Allows us to know a lot about something based on categorical information (determining who would be a good friend or partner).</li>
+                <li><span class="highlight-tag">Useful:</span> Allows us to know a lot about something based on categorical information.</li>
             </ul>
-
             <h4>Primary Categories</h4>
             <ul>
                 <li>The "Big Three" primary categories are <span class="highlight-tag">Race, Gender, and Age</span>.</li>
-                <li>These have clear visual indicators, carry evolutionary significance, and heavily influence how we interpret interactions.</li>
             </ul>
         `
     },
@@ -44,11 +41,10 @@ const lecture2Notes = [
                 <li><span class="highlight-tag">Outgroup Homogeneity:</span> The perception that "they all look alike." Within-group similarity among category members is perceived to increase.</li>
                 <li><span class="highlight-tag">Between-group Contrast:</span> Categorization actively increases perceived differences between groups. <em>Note:</em> The contrast effect is a much stronger and robust psychological phenomenon than within-group overlap.</li>
             </ul>
-
             <h4>Three Types of IG/OG Relationships</h4>
             <ul>
                 <li><span class="highlight-tag">Type I (IG Bias / OG Indifference):</span> Discrimination results simply from withholding favors and benefits (e.g., networking extended only to IG).</li>
-                <li><span class="highlight-tag">Type II (IG Indifference / OG Discrimination):</span> Motivated by negative views. The goal is to harm the OG without considering personal or IG gains (e.g., road rage towards specific demographics).</li>
+                <li><span class="highlight-tag">Type II (IG Indifference / OG Discrimination):</span> Motivated by negative views. The goal is to harm the OG without considering personal or IG gains.</li>
                 <li><span class="highlight-tag">Type III (IG Bias / OG Discrimination):</span> Situations are viewed as zero-sum games (e.g., complaints about affirmative action). The core motivation is to protect the IG while harming the OG.</li>
             </ul>
         `
@@ -58,7 +54,6 @@ const lecture2Notes = [
         content: `
             <h3>Behavior-Based Judgments & Favoritism</h3>
             <p><strong>IG Favoritism vs. OG Discrimination:</strong> Ingroup favoritism often occurs without direct outgroup discrimination (Type I). Positivity toward the IG is largely unrelated to the magnitude of negativity toward the OG.</p>
-            
             <h4>Sherman, Klein, Laskey, and Wyer (1998)</h4>
             <ul>
                 <li>Explored IG/OG influence on memory and impression formation using a minimal group paradigm ("Dot Overestimators" vs. "Underestimators").</li>
@@ -77,7 +72,6 @@ const lecture2Notes = [
                 <li>Faster reaction times occurred for positive traits preceded by ingroup pronoun primes (<em>we, our, us</em>).</li>
                 <li>In a lexical decision task, nonsense syllables paired with IG pronouns were later evaluated as more "pleasant".</li>
             </ul>
-
             <h4>Gaertner et al. (1983)</h4>
             <ul>
                 <li>Conducted a lexical reaction time test using words like BLACK and WHITE paired with positive/negative descriptors.</li>
@@ -95,7 +89,6 @@ const lecture2Notes = [
                 <li><em>Hehman et al. (2010):</em> Found this is due to <em>category salience</em> ("this face is important to my group"), not perceptual expertise.</li>
                 <li><em>Van Bavel et al. (2012):</em> The psychological "Need to belong" and experiences of "Social exclusion" both motivate a heightened own-group memory bias.</li>
             </ul>
-
             <h4>Prosocial Behaviors (Helping)</h4>
             <ul>
                 <li>IG members trigger positive emotional responses (trust, empathy), increasing the likelihood of helping behavior.</li>
@@ -114,7 +107,6 @@ const lecture2Notes = [
                 <li><span class="highlight-tag">Intergroup Attributional Bias:</span> Positive behaviors by IG members are attributed to dispositional/stable causes (personality), while negative behaviors are excused as situational/unstable external factors.</li>
                 <li><span class="highlight-tag">Belief in a Just World:</span> When an IG member suffers, this belief is threatened, so we are less likely to "blame the victim" due to shared group membership.</li>
             </ul>
-
             <h4>Overcoming Ingroup Favoritism</h4>
             <ul>
                 <li>Requires awareness, motivation, and ability. Suppressing IG positivity doesn't work (rebound effect).</li>
@@ -132,7 +124,6 @@ const lecture2Notes = [
                 <li>IG favoritism is difficult to detect compared to direct antagonism toward outgroups.</li>
                 <li>While being fired or verbally attacked is highly salient, <em>invisible discrimination</em> involves being quietly denied positive resources—such as not receiving encouragement, training, or mentoring, or being passed over for a specific account.</li>
             </ul>
-
             <h4>Relevance of Boosting (Finch & Cialdini, 1989)</h4>
             <ul>
                 <li><span class="highlight-tag">Boosting:</span> An indirect image management tactic.</li>
